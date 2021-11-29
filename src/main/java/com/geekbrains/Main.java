@@ -66,7 +66,8 @@ public class Main {
     }
 
     private static void aiTurn() {
-        int x, y;
+        int x;
+        int y;
 
         do {
             x = RANDOM.nextInt(SIZE);
@@ -77,7 +78,8 @@ public class Main {
     }
 
     private static void humanTurn() {
-        int x, y;
+        int x;
+        int y;
 
         do {
             System.out.println("Введите координаты в формате х и у");
