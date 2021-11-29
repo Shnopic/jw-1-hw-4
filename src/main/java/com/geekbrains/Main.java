@@ -23,7 +23,7 @@ public class Main {
                 System.out.println("Победил человек");
                 break;
             }
-            if (isMapFull()){
+            if (isMapFull()) {
                 System.out.println("Ничья");
                 break;
             }
@@ -33,7 +33,7 @@ public class Main {
                 System.out.println("Победил компьютер");
                 break;
             }
-            if (isMapFull()){
+            if (isMapFull()) {
                 System.out.println("Ничья");
                 break;
             }
@@ -43,14 +43,34 @@ public class Main {
     }
 
     private static boolean checkWin(char symbol) {
-        if (MAP[0][0] == symbol && MAP[0][1] == symbol && MAP[0][2] == symbol) return true;
-        if (MAP[1][0] == symbol && MAP[1][1] == symbol && MAP[1][2] == symbol) return true;
-        if (MAP[2][0] == symbol && MAP[2][1] == symbol && MAP[2][2] == symbol) return true;
-        if (MAP[0][0] == symbol && MAP[1][0] == symbol && MAP[2][0] == symbol) return true;
-        if (MAP[0][1] == symbol && MAP[1][1] == symbol && MAP[2][1] == symbol) return true;
-        if (MAP[0][2] == symbol && MAP[1][2] == symbol && MAP[2][2] == symbol) return true;
-        if (MAP[0][0] == symbol && MAP[1][1] == symbol && MAP[2][2] == symbol) return true;
-        if (MAP[2][0] == symbol && MAP[1][1] == symbol && MAP[0][2] == symbol) return true;
+        int i = 0;
+        int j = 0;
+        int m = 0;
+        int n = 0;
+        double result = (double) SIZE / 2;
+        for (int x = 0; x < SIZE; x++) {
+            for (int y = 0; y < SIZE; y++) {
+                if (MAP[x][y] == symbol) {
+                    i++;
+                }
+                if (MAP[y][x] == symbol) {
+                    j++;
+                }
+                if (x == y && MAP[x][y] == symbol) {
+                    n++;
+                }
+                if ((double) (x + y + 1) / 2 == result && MAP[x][y] == symbol) {
+                    m++;
+                }
+            }
+            if (i == DOTS_TO_WIN || j == DOTS_TO_WIN) {
+                return true;
+            }
+            i = j = 0;
+        }
+        if (m == DOTS_TO_WIN || n == DOTS_TO_WIN){
+            return true;
+        }
         return false;
     }
 
